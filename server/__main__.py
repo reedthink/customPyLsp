@@ -17,13 +17,13 @@
 import argparse
 import logging
 
-from .server import json_server
+from .server import py_server
 
 logging.basicConfig(filename="pygls.log", level=logging.DEBUG, filemode="w")
 
 
 def add_arguments(parser):
-    parser.description = "simple json server example"
+    parser.description = "simple py server example"
 
     parser.add_argument(
         "--tcp", action="store_true",
@@ -49,11 +49,11 @@ def main():
     args = parser.parse_args()
 
     if args.tcp:
-        json_server.start_tcp(args.host, args.port)
+        py_server.start_tcp(args.host, args.port)
     elif args.ws:
-        json_server.start_ws(args.host, args.port)
+        py_server.start_ws(args.host, args.port)
     else:
-        json_server.start_io()
+        py_server.start_io()
 
 
 if __name__ == '__main__':
